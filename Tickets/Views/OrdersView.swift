@@ -28,7 +28,7 @@ struct OrdersView: View {
                     LazyVStack(alignment:.leading){
                         Text(item.order_number ??  "Sin datos")
                         Text(item.user ?? "Usuario invalido")
-                        //  Text(item.phone ?? "sin teléfono")
+                        Text("\(item.phone) sin telefono")
                         Text(item.date ?? Date(), style:.date)
                         Text(item.remarks ?? "Sin notas adicionales")
                     }.contextMenu(ContextMenu(menuItems: {
@@ -38,7 +38,16 @@ struct OrdersView: View {
                             model.deleteData(item: item, context:context)
                             print("ok")
                         })
-                        {Label(title: {Text("Delete")}, icon: {Image(systemName:"trash")})}
+                        {Label(title: {Text("Delete")},
+                               icon: {Image(systemName:"trash")})}.tint(.red)
+                        // MARK: - IMPLEMENTAR NOTIFICACION DE EDITAR CON ALERT
+
+                        Button(role:.cancel,
+                               action: {model.sendData(item: item)})
+                        {
+                            Label(title: {Text("Edit")},
+                                  icon: {Image(systemName: "pencil")})
+                        }.tint(.indigo)
                         
                     }))
                 }//ForeEach
@@ -55,7 +64,7 @@ struct OrdersView: View {
                     model.user=""
                     model.available=false
                     model.order_number=""
-                    //model.phone=Int()
+                    //model.phone=Int16()
                     model.show.toggle()
                     
                 })

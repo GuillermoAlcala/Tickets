@@ -26,7 +26,7 @@ struct CreateOrderView: View {
                     TextField("Order Number", text:$model.order_number)
                         .keyboardType(.numberPad)
                     TextField("User", text: $model.user)
-                    //TextField("Phone", text: ($model.phone)
+                    TextField("Phone", text: $model.phone)
                //         .keyboardType(.numberPad)
                     TextField("Email", text: $model.email)
                         .keyboardType(.emailAddress)
@@ -51,7 +51,6 @@ struct CreateOrderView: View {
                         title: {Text("Guardar").foregroundColor(.indigo)},
                        icon: {Image(systemName: "signature").foregroundColor(.indigo)}
                     )
-                    
                 }
                 //.frame(alignment: .center)
                 .frame(width:UIScreen.main.bounds.width-30)

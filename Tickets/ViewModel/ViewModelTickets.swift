@@ -17,13 +17,13 @@ class ViewModel: ObservableObject{ // tiene tres protocolos: ObservedObject, Sta
     @Published var user=""
     @Published var remarks=""
     @Published var email=""
-    //@Published var phone=""
+    @Published var phone=""
     @Published var updateItem:Item!  // nombre de la entidad
     @Published var show=false       // para manejar el toggle
     
     // @Published para que las variables se reflejen en las vistas
 
-    //MARK:- FUNCION PARA GUARDAR DATOS
+    //MARK: - FUNCION PARA GUARDAR DATOS
     func saveData(context:NSManagedObjectContext){
         let newOrder=Item(context:context)
         newOrder.order_number=order_number
@@ -31,6 +31,7 @@ class ViewModel: ObservableObject{ // tiene tres protocolos: ObservedObject, Sta
         newOrder.available=available
         newOrder.user=user
         newOrder.remarks=remarks
+        newOrder.phone = Int16(phone) ?? 0
         //newOrder.phone=phone
         
         do {
@@ -43,13 +44,14 @@ class ViewModel: ObservableObject{ // tiene tres protocolos: ObservedObject, Sta
             user=""
             remarks=""
             email=""
-            //phone=""
+            phone=""
             show.toggle()
         } catch let error as NSError {
             print("Error al guarda datos", error.localizedDescription)
         }
     }
-    
+    // MARK: -- FUNCION PARA ELIMINAR LOS DATOS DEL LIST
+
     func deleteData(item:Item,context:NSManagedObjectContext){
         context.delete(item)
         do {
@@ -60,6 +62,44 @@ class ViewModel: ObservableObject{ // tiene tres protocolos: ObservedObject, Sta
             print("No se pudo eliminar datos", error.localizedDescription)
         }
         }
+    
+    // MARK: -- FUNCION PARA ENVIAR LOS DATOS HACÍA EL FORMULARIO
+    func sendData(item:Item){
+        updateItem=item
+        remarks=item.remarks!
+        phone=String(item.phone)
+        available=item.available
+        user=item.user!
+        order_number=item.order_number!
+        date=item.date ?? Date()
+        show.toggle()
+    }
+    // MARK: -- FUNCION PARA EDITAR LOS DATOS DENTRO DEL FORMULARIO
+    func editData(context:NSManagedObjectContext){
+     //   updateItem.remarks=remarks
+        //updateItem.phone=Int16(phone)?? "0"
+        updateItem.available=available
+        updateItem.user=user
+        updateItem.order_number=order_number
+        updateItem.email=email
+        updateItem.date=date
+        
+        do {
+            try context.save()
+            print("Data editados correctamente")
+            show.toggle()
+//            remarks
+//            phone
+//            available
+//            user=""
+//            order_number=""
+//            email=""
+//            date=Date()
+        } catch let error as NSError {
+            print("No fue posible editar", error.localizedDescription)
+        }
+
+    }
     }
 
 
