@@ -28,7 +28,9 @@ struct OrdersView: View {
                     LazyVStack(alignment:.leading){
                         Text(item.order_number ??  "Sin datos")
                         Text(item.user ?? "Usuario invalido")
-                        Text("\(item.phone) sin telefono")
+                        Text(item.email ?? "Sin datos de correo")
+                        //Text(item.phone)
+                        // si jala Text("\(item.phone) sin telefono")
                         Text(item.date ?? Date(), style:.date)
                         Text(item.remarks ?? "Sin notas adicionales")
                     }.contextMenu(ContextMenu(menuItems: {
@@ -40,6 +42,7 @@ struct OrdersView: View {
                         })
                         {Label(title: {Text("Delete")},
                                icon: {Image(systemName:"trash")})}.tint(.red)
+                        
                         // MARK: - IMPLEMENTAR NOTIFICACION DE EDITAR CON ALERT
 
                         Button(role:.cancel,
@@ -50,30 +53,39 @@ struct OrdersView: View {
                         }.tint(.indigo)
                         
                     }))
+                    // MARK: - SWIPE PARA EDITAR
+                        .swipeActions(edge:.leading, allowsFullSwipe: true){
+                            VStack{
+                                Button(action: {model.sendData(item: item)},
+                                       label: {Label("Edit",systemImage: "pencil")})
+                                .tint(.blue)
+                            }
+                        }//swipe
+                    
                 }//ForeEach
             }//List
             //    }//Lazy
-            
             //      }//ScroolView
             .navigationTitle("Orders")
             .toolbar{
                 Button(action:{
-                    //    model.phone=""
+                    model.updateItem=nil
                     model.email=""
                     model.remarks=""
                     model.user=""
-                    model.available=false
+                    model.available=Bool()
                     model.order_number=""
-                    //model.phone=Int16()
+                    //  $model.phone=""
                     model.show.toggle()
-                    
                 })
                 {
-                    Image(systemName:"plus")
+                    Image(systemName:"plus.circle")
                         .foregroundColor(.red)
                 }
                 
             }.sheet(isPresented: $model.show, content: {CreateOrderView(model:model)})
+            
+            
         }
     }
 }
@@ -82,7 +94,7 @@ struct OrdersView: View {
 
 /*
  1.-
- EL TOGGLE DEBERÁ ACTIVARSE COMO DISPONIBLE, MIENTRAS TANTO DEBE QUEDAR INACTIVO
+ EL TOGGLE DEBERÁ ACTIVARSE COMO DISPONIBLE, MIENTRAS TANTO DEBE QUEDAR INACTIVO -> OK
  
  2.- EN LA PANTALLA PRINCIPAL DEBERÁ MOSTRARSE EL NÚMERO DE ORDEN Y EL TIMER CON UN TIEMPO LÍMITE (CUENTA REGRESIVA)
  

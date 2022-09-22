@@ -17,7 +17,7 @@ class ViewModel: ObservableObject{ // tiene tres protocolos: ObservedObject, Sta
     @Published var user=""
     @Published var remarks=""
     @Published var email=""
-    @Published var phone=""
+    //@Published var phone=""
     @Published var updateItem:Item!  // nombre de la entidad
     @Published var show=false       // para manejar el toggle
     
@@ -31,8 +31,8 @@ class ViewModel: ObservableObject{ // tiene tres protocolos: ObservedObject, Sta
         newOrder.available=available
         newOrder.user=user
         newOrder.remarks=remarks
-        newOrder.phone = Int16(phone) ?? 0
-        //newOrder.phone=phone
+        //newOrder.phone = Int16(phone) ?? 0
+        
         
         do {
             try
@@ -44,8 +44,9 @@ class ViewModel: ObservableObject{ // tiene tres protocolos: ObservedObject, Sta
             user=""
             remarks=""
             email=""
-            phone=""
+            //phone=""
             show.toggle()
+
         } catch let error as NSError {
             print("Error al guarda datos", error.localizedDescription)
         }
@@ -67,34 +68,36 @@ class ViewModel: ObservableObject{ // tiene tres protocolos: ObservedObject, Sta
     func sendData(item:Item){
         updateItem=item
         remarks=item.remarks!
-        phone=String(item.phone)
+        //phone=String(item.phone)
         available=item.available
         user=item.user!
         order_number=item.order_number!
         date=item.date ?? Date()
+        email=item.email ?? "Sin datos"
         show.toggle()
     }
     // MARK: -- FUNCION PARA EDITAR LOS DATOS DENTRO DEL FORMULARIO
     func editData(context:NSManagedObjectContext){
-     //   updateItem.remarks=remarks
-        //updateItem.phone=Int16(phone)?? "0"
+        updateItem.remarks=remarks
+        //updateItem.phone=(Int16(phone)?
         updateItem.available=available
         updateItem.user=user
         updateItem.order_number=order_number
         updateItem.email=email
         updateItem.date=date
+
         
         do {
             try context.save()
-            print("Data editados correctamente")
+            remarks=""
+            //phone=""
+            available=Bool()
+            user=""
+            order_number=""
+            email=""
+            date=Date()
             show.toggle()
-//            remarks
-//            phone
-//            available
-//            user=""
-//            order_number=""
-//            email=""
-//            date=Date()
+            print("Data editados correctamente")
         } catch let error as NSError {
             print("No fue posible editar", error.localizedDescription)
         }

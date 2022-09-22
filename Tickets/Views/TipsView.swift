@@ -23,6 +23,18 @@ struct TipsView: View {
                 }.padding()
             }
         .navigationTitle("Tips")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                } label: {
+                    Label("Add food", systemImage: "plus.circle")
+                }
+            }
+            ToolbarItem(placement: .navigationBarLeading) {
+                EditButton()
+            }
+        }//toolbar
+        
         }
     }
 }

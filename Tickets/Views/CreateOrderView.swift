@@ -26,8 +26,8 @@ struct CreateOrderView: View {
                     TextField("Order Number", text:$model.order_number)
                         .keyboardType(.numberPad)
                     TextField("User", text: $model.user)
-                    TextField("Phone", text: $model.phone)
-               //         .keyboardType(.numberPad)
+//                    TextField("Phone", text: $model.phone)
+//                        .keyboardType(.numberPad)
                     TextField("Email", text: $model.email)
                         .keyboardType(.emailAddress)
                         .textContentType(.emailAddress)
@@ -44,7 +44,14 @@ struct CreateOrderView: View {
                 Button(action:{
                     //llamo al modelo y la función de guardar datos y le paso
                     //como parámetro el contexto
+
+                    //Si el form tiene contenido -> Editar, en caso contrario: Guardar
+                    if model.updateItem != nil{
+                        model.editData(context: context)
+                    }else{
                         model.saveData(context: context)
+                    }
+                        
                 })
                 {
                     Label(
@@ -57,17 +64,16 @@ struct CreateOrderView: View {
                 //.background(.red)
                 //.disabled(model.nota == ""    ? true : false)
                 .cornerRadius(10)
-
             }
             
             
             //MARK: - NAVIGATION TITLE
+            
             .navigationTitle("Create Orders")
 //            //MARK: - TOOLBAR
                 .toolbar{
                     Button(action: {
                         back.wrappedValue.dismiss()
-
                     }){
                         NavigationLink(destination: OrdersView(model: model)){}
                             Image(systemName:"xmark")
