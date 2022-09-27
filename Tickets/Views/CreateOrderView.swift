@@ -34,11 +34,16 @@ struct CreateOrderView: View {
                         .submitLabel(.done)
                         .foregroundColor(.red)
                     Toggle("Available", isOn: $model.available)
-                        .toggleStyle(.automatic)
-                    DatePicker("Fecha",selection: $model.date)
-                        .datePickerStyle(.automatic)
+                        .tint(.teal)
+                        .toggleStyle(.switch)
+                }
+                
+                //MARK: - SECCIÓN DE NOTAS
+                Section(header: Text("Remarks")){
                     TextEditor(text:$model.remarks)
                         .keyboardType(.alphabet)
+                    DatePicker("Fecha",selection: $model.date)
+                        .datePickerStyle(.automatic)
                 }
                 //MARK: -BOTON DE GUARDAR
                 Button(action:{
@@ -55,16 +60,16 @@ struct CreateOrderView: View {
                 })
                 {
                     Label(
-                        title: {Text("Guardar").foregroundColor(.indigo)},
-                       icon: {Image(systemName: "signature").foregroundColor(.indigo)}
+                        title: {Text("Guardar").foregroundColor(.teal)},
+                       icon: {Image(systemName: "signature").foregroundColor(.teal)}
                     )
                 }
                 //.frame(alignment: .center)
-                .frame(width:UIScreen.main.bounds.width-30)
+                .frame(width:UIScreen.main.bounds.width-90)
                 //.background(.red)
                 //.disabled(model.nota == ""    ? true : false)
-                .cornerRadius(10)
-            }
+                //.cornerRadius(10)
+            } //: FORM
             
             
             //MARK: - NAVIGATION TITLE

@@ -26,12 +26,20 @@ struct OrdersView: View {
             List{
                 ForEach(results){ item in
                     LazyVStack(alignment:.leading){
-                        Text(item.order_number ??  "Sin datos")
+                        Text("Orden : \(item.order_number ??  "Sin datos")")
                         Text(item.user ?? "Usuario invalido")
                         Text(item.email ?? "Sin datos de correo")
+                      
+                        if item.available==true{
+                            Text("Pedido disponible")
+                        } else{
+                            Text("Pedido no disponible")
+                        }
+                        
                         //Text(item.phone)
                         // si jala Text("\(item.phone) sin telefono")
                         Text(item.date ?? Date(), style:.date)
+                        Text(item.date ?? Date().addingTimeInterval(100), style:.timer)
                         Text(item.remarks ?? "Sin notas adicionales")
                     }.contextMenu(ContextMenu(menuItems: {
                         
