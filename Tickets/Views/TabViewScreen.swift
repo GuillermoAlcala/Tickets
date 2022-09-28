@@ -14,7 +14,7 @@ struct TabViewScreen: View {
             OrdersView().tabItem(){
                 Label("Orders",systemImage: "cart")
             }
-            TipsView(Total: 100, CantidadPersonas: "").tabItem(){
+            TipsView().tabItem(){
                 Label("Tips", systemImage:"shekelsign.square")
             }
             TotalOrdersView().tabItem(){

@@ -18,7 +18,6 @@ struct OrdersView: View {
                   sortDescriptors: [NSSortDescriptor.init(key: "date",ascending:false)],
                   animation:.spring()) var results:FetchedResults<Item>
     @State private var isPresented=false
-    
     var body: some View {
         NavigationView{
             //ScrollView{
@@ -40,6 +39,9 @@ struct OrdersView: View {
                         // si jala Text("\(item.phone) sin telefono")
                         Text(item.date ?? Date(), style:.date)
                         Text(item.date ?? Date().addingTimeInterval(100), style:.timer)
+                            
+                         
+                        
                         Text(item.remarks ?? "Sin notas adicionales")
                     }.contextMenu(ContextMenu(menuItems: {
                         
