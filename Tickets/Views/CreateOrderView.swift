@@ -32,6 +32,7 @@ struct CreateOrderView: View {
                         .keyboardType(.emailAddress)
                         .textContentType(.emailAddress)
                         .submitLabel(.done)
+                        .disableAutocorrection(true)
                         .foregroundColor(.red)
                     Toggle("Available", isOn: $model.available)
                         .tint(.teal)

@@ -8,8 +8,33 @@
         <attribute name="phone" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="remarks" optional="YES" attributeType="String"/>
         <attribute name="user" optional="YES" attributeType="String"/>
+        <attribute name="user_id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="relationToPersonal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Personal_Information" inverseName="relationToItem" inverseEntity="Personal_Information"/>
+    </entity>
+    <entity name="Payment" representedClassName="Payment" syncable="YES" codeGenerationType="class">
+        <attribute name="card_number" optional="YES" attributeType="String"/>
+        <attribute name="creation_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="expiration_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="idPayment" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="information_payment" optional="YES" attributeType="String"/>
+        <attribute name="security_code" optional="YES" attributeType="String"/>
+        <attribute name="user_id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="relationToPersonal" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Personal_Information" inverseName="relationToPayment" inverseEntity="Personal_Information"/>
+    </entity>
+    <entity name="Personal_Information" representedClassName="Personal_Information" syncable="YES" codeGenerationType="class">
+        <attribute name="adress" optional="YES" attributeType="String"/>
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="creation_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="postal_code" optional="YES" attributeType="String"/>
+        <attribute name="user_id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="relationToItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="relationToPersonal" inverseEntity="Item"/>
+        <relationship name="relationToPayment" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Payment" inverseName="relationToPersonal" inverseEntity="Payment"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="134"/>
+        <element name="Item" positionX="-479.8828125" positionY="-88.2421875" width="145.62109375" height="178"/>
+        <element name="Personal_Information" positionX="-272.328125" positionY="-232.3984375" width="214.1796875" height="178"/>
+        <element name="Payment" positionX="23.484375" positionY="-326.7578125" width="128" height="163"/>
     </elements>
 </model>

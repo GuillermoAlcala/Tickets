@@ -21,6 +21,8 @@
 		5E4017C628CBA93100E11BA9 /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4017C528CBA93100E11BA9 /* TipsView.swift */; };
 		5E4017C828CBA9AA00E11BA9 /* TotalOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4017C728CBA9AA00E11BA9 /* TotalOrdersView.swift */; };
 		5E4017CA28CBDEE200E11BA9 /* CreateOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4017C928CBDEE200E11BA9 /* CreateOrderView.swift */; };
+		5E4B4C8328EB5A29004DF729 /* ViewModelPersonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B4C8228EB5A29004DF729 /* ViewModelPersonal.swift */; };
+		5E4B4C8528F21569004DF729 /* ViewModelPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B4C8428F21569004DF729 /* ViewModelPayment.swift */; };
 		5E4CE01028D1AA2800020AF5 /* ViewModelTickets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CE00F28D1AA2800020AF5 /* ViewModelTickets.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,8 @@
 		5E4017C528CBA93100E11BA9 /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
 		5E4017C728CBA9AA00E11BA9 /* TotalOrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalOrdersView.swift; sourceTree = "<group>"; };
 		5E4017C928CBDEE200E11BA9 /* CreateOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderView.swift; sourceTree = "<group>"; };
+		5E4B4C8228EB5A29004DF729 /* ViewModelPersonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelPersonal.swift; sourceTree = "<group>"; };
+		5E4B4C8428F21569004DF729 /* ViewModelPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelPayment.swift; sourceTree = "<group>"; };
 		5E4CE00F28D1AA2800020AF5 /* ViewModelTickets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTickets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				5E4CE00F28D1AA2800020AF5 /* ViewModelTickets.swift */,
+				5E4B4C8228EB5A29004DF729 /* ViewModelPersonal.swift */,
+				5E4B4C8428F21569004DF729 /* ViewModelPayment.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -301,8 +307,10 @@
 				5E40179A28CA552300E11BA9 /* Persistence.swift in Sources */,
 				5E40179328CA552100E11BA9 /* ContentView.swift in Sources */,
 				5E40179128CA552100E11BA9 /* TicketsApp.swift in Sources */,
+				5E4B4C8328EB5A29004DF729 /* ViewModelPersonal.swift in Sources */,
 				5E4017C628CBA93100E11BA9 /* TipsView.swift in Sources */,
 				5E4017C428CBA86A00E11BA9 /* TabViewScreen.swift in Sources */,
+				5E4B4C8528F21569004DF729 /* ViewModelPayment.swift in Sources */,
 				5E4017C828CBA9AA00E11BA9 /* TotalOrdersView.swift in Sources */,
 				5E4017CA28CBDEE200E11BA9 /* CreateOrderView.swift in Sources */,
 				5E4CE01028D1AA2800020AF5 /* ViewModelTickets.swift in Sources */,

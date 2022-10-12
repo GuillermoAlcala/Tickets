@@ -11,7 +11,10 @@ import CoreData
 
 struct OrdersView: View {
     //@ObservedObject var model:ViewModel
-    @StateObject var model=ViewModel()
+    @ObservedObject var modelPersonal=ViewModelPersonal()
+    @ObservedObject var modelPayment=ViewModelPayment()
+    @StateObject    var model=ViewModel()
+    
     @Environment(\.managedObjectContext) var context
     //@State private var show=false
     @FetchRequest(entity:Item.entity(),
@@ -62,6 +65,11 @@ struct OrdersView: View {
                                   icon: {Image(systemName: "pencil")})
                         }.tint(.indigo)
                         
+                        
+                        // MARK: - IMPLEMENTANDO PERSONAL_VIEW
+                        Button(role: .none,
+                               action: {modelPersonal.savePersonalData(contextPersonal: context)},
+                               label: {Text("Personal information")})
                     }))
                     // MARK: - SWIPE PARA EDITAR
                         .swipeActions(edge:.leading, allowsFullSwipe: true){

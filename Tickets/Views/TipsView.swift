@@ -7,7 +7,16 @@
 
 import SwiftUI
 struct TipsView: View {
-    @ObservedObject private var model=ViewModel()
+    @ObservedObject   private var model=ViewModel() // modelo de la vista principal
+    @ObservedObject   private var modelPersonalInformation=ViewModelPersonal() // modelo de los datos personales
+    @ObservedObject   private var modelPayment=ViewModelPayment() // modelo del information_payment
+
+    //@ObservedObject private var model=ViewModel() se comenta para utilizar el modelo de PersonalInformation
+
+    @State private var username: String = ""
+    @Environment (\.managedObjectContext) var contextPersonal
+ //   @FocusState private var emailFieldIsFocused:Bool
+
     //    @State var Total:Int
     //    @State var CantidadPersonas:String
     //    @State private var  stepper: Int = 0
@@ -18,25 +27,33 @@ struct TipsView: View {
             // FORMULARIO DE PAGO
             Form{
                 Section(header: Text("User payments")){
-                    TextField("Name", text: $model.user)
-                    Picker("Information Payment", selection: $model.user) {
+                    TextField("Name", text: $modelPersonalInformation.name)
+                        .textInputAutocapitalization(.characters)
+                    Picker("Information Payment", selection: $modelPayment.information_payment) {
                     // MARK: - CAMPOS
-                        TextField("Card Number", text: $model.user)
+                        TextField("Card Number", text: $modelPayment.card_number)
+                            .textInputAutocapitalization(.characters)
+                        
                         DatePicker("Expiration",
-                                   selection: $model.date,
+                                   selection: $modelPayment.expiration_date,
                                    displayedComponents: [.date])
-                        TextField("Security Code", text: $model.user)
+                        SecureField("Security Code", text: $modelPayment.security_code)
+                        //agregar teclado númerico
+                        
                         Toggle("Automatic pay", isOn: $model.available)
                             .tint(.teal)
+//                        Text(username)
+//                            .foregroundColor(emailFieldIsFocused ? .red : .blue)
+
                     } //: PICKER
                     
                 } //: SECTION
                 Section(header: Text("Personal Settings")){
-                    TextField("City", text: $model.user)
-                    TextField("Postal Code", text: $model.user)
-                    TextField("Adress", text: $model.user)
-                    TextField("Phone", text: $model.user)
-                      //  .keyboardType(.numberPad)
+                    TextField("City", text: $modelPersonalInformation.city)
+                    TextField("Postal Code", text: $modelPersonalInformation.postal_code)
+                    TextField("Adress", text: $modelPersonalInformation.adress)
+                    TextField("Phone", text: $modelPersonalInformation.phone)
+                        .keyboardType(.numberPad)
                     
                 }
                 
@@ -49,6 +66,7 @@ struct TipsView: View {
                 }
             } //: FORM
             
+            // EJEMPLO UTILIZANDO EL TOGGLE CON DOS TEXT
             
             //            ScrollView{
             //                LazyVStack(alignment: .leading){
