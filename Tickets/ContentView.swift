@@ -9,6 +9,8 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+//    @ObservedObject public  var item:Item
+
 //    @Environment(\.managedObjectContext) private var viewContext
 //
 //    @FetchRequest(

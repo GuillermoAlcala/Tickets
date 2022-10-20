@@ -20,6 +20,11 @@ struct OrdersView: View {
     @FetchRequest(entity:Item.entity(),
                   sortDescriptors: [NSSortDescriptor.init(key: "date",ascending:false)],
                   animation:.spring()) var results:FetchedResults<Item>
+    
+    @FetchRequest(entity:Personal_Information.entity(),
+                  sortDescriptors: [NSSortDescriptor.init(key: "creation_date",ascending:false)],
+                  animation:.spring()) var Personalresults:FetchedResults<Personal_Information>
+    
     @State private var isPresented=false
     var body: some View {
         NavigationView{
@@ -31,7 +36,7 @@ struct OrdersView: View {
                         Text("Orden : \(item.order_number ??  "Sin datos")")
                         Text(item.user ?? "Usuario invalido")
                         Text(item.email ?? "Sin datos de correo")
-                      
+                        
                         if item.available==true{
                             Text("Pedido disponible")
                         } else{
@@ -42,8 +47,8 @@ struct OrdersView: View {
                         // si jala Text("\(item.phone) sin telefono")
                         Text(item.date ?? Date(), style:.date)
                         Text(item.date ?? Date().addingTimeInterval(100), style:.timer)
-                            
-                         
+                        
+                        
                         
                         Text(item.remarks ?? "Sin notas adicionales")
                     }.contextMenu(ContextMenu(menuItems: {
@@ -57,7 +62,7 @@ struct OrdersView: View {
                                icon: {Image(systemName:"trash")})}.tint(.red)
                         
                         // MARK: - IMPLEMENTAR NOTIFICACION DE EDITAR CON ALERT
-
+                        
                         Button(role:.cancel,
                                action: {model.sendData(item: item)})
                         {
@@ -67,18 +72,26 @@ struct OrdersView: View {
                         
                         
                         // MARK: - IMPLEMENTANDO PERSONAL_VIEW
-                        Button(role: .none,
-                               action: {modelPersonal.savePersonalData(contextPersonal: context)},
-                               label: {Text("Personal information")})
+//                        Button(role:.none,
+//                               action: {
+//                            modelPersonal.sendPersonalInformation(p_SendPersonsalInformation: item)
+//
+//                        })
+//                        {
+//                            Label(title: {Text("Personal Information")},
+//                                  icon: {Image(systemName: "pencil")})
+//                        }.tint(.indigo)
+                       // 12OCT2022
+                        
                     }))
                     // MARK: - SWIPE PARA EDITAR
-                        .swipeActions(edge:.leading, allowsFullSwipe: true){
-                            VStack{
-                                Button(action: {model.sendData(item: item)},
-                                       label: {Label("Edit",systemImage: "pencil")})
-                                .tint(.blue)
-                            }
-                        }//swipe
+                    .swipeActions(edge:.leading, allowsFullSwipe: true){
+                        VStack{
+                            Button(action: {model.sendData(item: item)},
+                                   label: {Label("Edit",systemImage: "pencil")})
+                            .tint(.blue)
+                        }
+                    }//swipe
                     
                 }//ForeEach
             }//List

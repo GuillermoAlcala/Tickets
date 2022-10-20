@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct TabViewScreen: View {
+//    @ObservedObject  var item:Item
     var body: some View {
         
         TabView(){
             OrdersView().tabItem(){
                 Label("Orders",systemImage: "cart")
             }
-            TipsView().tabItem(){
-                Label("Tips", systemImage:"shekelsign.square")
+            PersonalView().tabItem(){
+                Label("Personal", systemImage:"shekelsign.square")
             }
             TotalOrdersView().tabItem(){
                 Label("Totals",systemImage:"sum")
@@ -26,8 +27,9 @@ struct TabViewScreen: View {
     }
 }
 
-struct TabViewScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        TabViewScreen()
-    }
-}
+//
+//struct TabViewScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TabViewScreen(item: item)
+//    }
+//}

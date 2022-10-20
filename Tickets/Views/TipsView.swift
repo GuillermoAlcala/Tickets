@@ -8,19 +8,24 @@
 import SwiftUI
 struct TipsView: View {
     @ObservedObject   private var model=ViewModel() // modelo de la vista principal
-    @ObservedObject   private var modelPersonalInformation=ViewModelPersonal() // modelo de los datos personales
+    @ObservedObject    var modelPersonalInformation=ViewModelPersonal() // modelo de los datos personales
     @ObservedObject   private var modelPayment=ViewModelPayment() // modelo del information_payment
 
     //@ObservedObject private var model=ViewModel() se comenta para utilizar el modelo de PersonalInformation
 
     @State private var username: String = ""
     @Environment (\.managedObjectContext) var contextPersonal
+  //  @ObservedObject public  var item:Item
  //   @FocusState private var emailFieldIsFocused:Bool
 
     //    @State var Total:Int
     //    @State var CantidadPersonas:String
     //    @State private var  stepper: Int = 0
     //    @State private var showingWelcome = false
+    
+    @FetchRequest(entity:Personal_Information.entity(),
+                  sortDescriptors: [NSSortDescriptor.init(key: "creation_date",ascending:false)],
+                  animation:.spring()) var Personalresults:FetchedResults<Personal_Information>
     
     var body: some View {
         NavigationView{
@@ -58,7 +63,9 @@ struct TipsView: View {
                 }
                 
                 Button(action: {
-                    
+                    modelPersonalInformation.savePersonalData(contextPersonal: contextPersonal)
+                    print("Datos guardados")
+
                 }){
                     Text("Guardar")
                         .fontWeight(.light)

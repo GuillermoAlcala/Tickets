@@ -11,6 +11,7 @@ import SwiftUI
 import Combine
 
 class ViewModel: ObservableObject{ // tiene tres protocolos: ObservedObject, StateObject, EnvironmentObject
+    //@Published var id=UUID() // se agrega 13 oct 22
     @Published  var order_number=""
     @Published var date=Date()
     @Published var available=false
@@ -103,6 +104,10 @@ class ViewModel: ObservableObject{ // tiene tres protocolos: ObservedObject, Sta
         }
 
     }
+    
+    
+    
+    
     }
 
 
